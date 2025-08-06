@@ -5,7 +5,7 @@ namespace AulasBD2025
 {
     public partial class frmAlunos : Form
     {
-        private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Aulas\DAD\AulasBD2025\AulasBD2025\AppData\MeuBanco.mdf;Integrated Security=True";
+        private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\AppData\MeuBanco.mdf;Integrated Security=True";
 
         public frmAlunos()
         {
