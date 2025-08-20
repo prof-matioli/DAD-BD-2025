@@ -125,7 +125,7 @@
             dgvAlunos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAlunos.Size = new Size(465, 248);
             dgvAlunos.TabIndex = 4;
-            dgvAlunos.RowPostPaint += dgvAlunos_RowPostPaint;
+            dgvAlunos.SelectionChanged += dgvAlunos_SelectionChanged;
             // 
             // frmAlunos
             // 

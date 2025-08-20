@@ -14,7 +14,7 @@ namespace BancoDados
 {
     public partial class frmAlunos : Form
     {
-        private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Matioli\TDS2\BancoDados\BancoDados\APPDATA\MeuBanco.mdf;Integrated Security=True";
+        private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\APPDATA\MeuBanco.mdf;Integrated Security=True";
 
         public frmAlunos()
         {
@@ -120,14 +120,10 @@ namespace BancoDados
             CarregarAlunosNoDataGridView();
         }
 
-        private void dgvAlunos_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-         }
-
-        private void dgvAlunos_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void dgvAlunos_SelectionChanged(object sender, EventArgs e)
         {
             DataGridViewRow currentRow = dgvAlunos.CurrentRow;
-            if (dgvAlunos.CurrentRow != null)
+            if (currentRow != null)
             {
                 int rowIndex = currentRow.Index;
                 // Faça algo com a linha atual, como acessar seus valores
