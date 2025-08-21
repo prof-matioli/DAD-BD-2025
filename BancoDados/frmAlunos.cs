@@ -9,12 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.LinkLabel;
 
 namespace BancoDados
 {
     public partial class frmAlunos : Form
     {
-        private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\APPDATA\MeuBanco.mdf;Integrated Security=True";
+        private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Matioli\TDS2\BancoDados\APPDATA\MeuBanco.mdf;Integrated Security=True";
 
         public frmAlunos()
         {
@@ -144,5 +146,56 @@ namespace BancoDados
                 }
             }
         }
+
+        private void btnAtualizarDados_Click(object sender, EventArgs e)
+        {
+            frmAtualizaAluno atualizaAlunoForm = new frmAtualizaAluno();
+            atualizaAlunoForm.ShowDialog(); // Abre o formulário de atualização como modal
+            CarregarAlunosNoDataGridView(); // Recarrega os dados após a atualização
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow currentRow = dgvAlunos.SelectedRows[0];
+            if (currentRow.Cells.Count > 0 && currentRow.Cells[0].Value != null)
+            {
+                Int32 idAluno = Convert.ToInt32(currentRow.Cells[0].Value.ToString());
+                string sqlDelete = "DELETE FROM Alunos WHERE Id = @IdAluno";
+                using (SqlConnection conexao = new SqlConnection(stringConexao))
+                {
+                    using (SqlCommand comando = new SqlCommand(sqlDelete, conexao))
+                    {
+                        comando.Parameters.AddWithValue("@IdAluno", idAluno);
+                        try
+                        {
+                            conexao.Open();
+
+                            int linhasAfetadas = comando.ExecuteNonQuery();
+                            if (linhasAfetadas > 0)
+                            {
+                                MessageBox.Show($"Aluno com ID {idAluno} excluído com sucesso!");
+                                // Opcional: recarregar o DataGridView
+                                CarregarAlunosNoDataGridView();
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Nenhum aluno encontrado com ID {idAluno}.");
+                            }
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show("Erro ao excluir aluno: " + ex.Message);
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("A célula da coluna zero da linha selecionada não tem um valor ou não existe.", "Erro",
+MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
+
 }

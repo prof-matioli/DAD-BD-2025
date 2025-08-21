@@ -37,6 +37,8 @@
             btnInserir = new Button();
             btnConsultar = new Button();
             dgvAlunos = new DataGridView();
+            btnAtualizarDados = new Button();
+            btnExcluir = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvAlunos).BeginInit();
             SuspendLayout();
             // 
@@ -108,7 +110,7 @@
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI", 14F);
-            btnConsultar.Location = new Point(129, 396);
+            btnConsultar.Location = new Point(118, 396);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(115, 40);
             btnConsultar.TabIndex = 3;
@@ -127,12 +129,36 @@
             dgvAlunos.TabIndex = 4;
             dgvAlunos.SelectionChanged += dgvAlunos_SelectionChanged;
             // 
+            // btnAtualizarDados
+            // 
+            btnAtualizarDados.Font = new Font("Segoe UI", 14F);
+            btnAtualizarDados.Location = new Point(239, 396);
+            btnAtualizarDados.Name = "btnAtualizarDados";
+            btnAtualizarDados.Size = new Size(115, 40);
+            btnAtualizarDados.TabIndex = 3;
+            btnAtualizarDados.Text = "Atualizar";
+            btnAtualizarDados.UseVisualStyleBackColor = true;
+            btnAtualizarDados.Click += btnAtualizarDados_Click;
+            // 
+            // btnExcluir
+            // 
+            btnExcluir.Font = new Font("Segoe UI", 14F);
+            btnExcluir.Location = new Point(364, 396);
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.Size = new Size(115, 40);
+            btnExcluir.TabIndex = 3;
+            btnExcluir.Text = "Excluir";
+            btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
+            // 
             // frmAlunos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(491, 448);
             Controls.Add(dgvAlunos);
+            Controls.Add(btnExcluir);
+            Controls.Add(btnAtualizarDados);
             Controls.Add(btnConsultar);
             Controls.Add(btnInserir);
             Controls.Add(txtCurso);
@@ -160,5 +186,7 @@
         private Button btnInserir;
         private Button btnConsultar;
         private DataGridView dgvAlunos;
+        private Button btnAtualizarDados;
+        private Button btnExcluir;
     }
 }
