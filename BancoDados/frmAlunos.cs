@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace BancoDados
 {
     public partial class frmAlunos : Form
     {
-        private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Matioli\TDS2\BancoDados\APPDATA\MeuBanco.mdf;Integrated Security=True";
+        //private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\MATIOLI\TDS2\BANCODADOS\BANCODADOS\APPDATA\MEUBANCO.MDF;Integrated Security=True";
+        string stringConexao = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
         public frmAlunos()
         {
@@ -28,6 +30,7 @@ namespace BancoDados
         private void CarregarAlunosNoDataGridView()
         {
             string sqlSelect = "SELECT Id, Nome, Idade, Curso FROM Alunos";
+
             using (SqlConnection conexao = new SqlConnection(stringConexao))
             {
                 // SqlDataAdapter preenche o DataTable

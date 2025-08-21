@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace BancoDados
 {
     public partial class frmAtualizaAluno : Form
     {
-        private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Matioli\TDS2\BancoDados\APPDATA\MeuBanco.mdf;Integrated Security=True";
+        //private string stringConexao = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\..\..\..\APPDATA\MeuBanco.mdf;Integrated Security=True";
+        string stringConexao = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         public frmAtualizaAluno()
         {
             InitializeComponent();
